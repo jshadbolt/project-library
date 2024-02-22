@@ -27,19 +27,40 @@
             <label for="genre">Genre:</label>
             <input type="text" id="genre" name="genre">
         </div>
-        <div>
-            <label for="status">Read? :</label>
-            <input type="text" id="status" name="status">
-        </div>
         <button type="submit" id="form-submit">Create Book</button>
     </form>
     <div class="list-container">
         <div class="list-header">
-            <div class="list-header-title">Title</div>
-            <div class="list-header-author">Author</div>
-            <div class="list-header-pages">Pages</div>
-            <div class="list-header-genre">Genre</div>
-            <div class="list-header-status">Status</div>
+            <div class="header-subsection">
+                <div class="list-header-title">Title</div>
+                <div class="sort-button-container">
+                    <button class="sort-button" id="title-sort">.</button>
+                </div>
+            </div>
+            <div class="header-subsection">
+                <div class="list-header-author">Author</div>
+                <div class="sort-button-container">
+                    <button class="sort-button" id="author-sort">.</button>
+                </div>
+            </div>
+            <div class="header-subsection">
+                <div class="list-header-pages">Pages</div>
+                <div class="sort-button-container">
+                    <button class="sort-button" id="pages-sort">.</button>
+                </div>
+            </div>
+            <div class="header-subsection">
+                <div class="list-header-genre">Genre</div>
+                <div class="sort-button-container">
+                    <button class="sort-button" id="genre-sort">.</button>
+                </div>
+            </div>
+            <div class="header-subsection">
+                <div class="list-header-status">Status</div>
+                <div class="sort-button-container">
+                    <button class="sort-button" id="status-sort">.</button>
+                </div>
+            </div>
         </div>
         <ul class="list">
         </ul>

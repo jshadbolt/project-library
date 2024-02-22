@@ -22,6 +22,17 @@ img, picture, svg, video {
     height: 30px;
 }
 
+.header-subsection {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.sort {
+    padding: 2px 5px;
+}
+
 .list-header,
 .list-item {
     display: grid;
@@ -38,6 +49,7 @@ img, picture, svg, video {
 .list-item {
     border: 1px solid black;
 }
+
 
 
 
