@@ -67,6 +67,9 @@ function createItem(obj) {
         statusBtn.textContent = obj.status
         console.log(obj.status)
     })
+    if (obj.status === 'Read') {
+        statusBtn.classList.add('has-read')
+    } 
     listItem.appendChild(statusBtn)
 
     let itemDelBtn = document.createElement('button')
@@ -84,14 +87,11 @@ function createItem(obj) {
 function removeListItem(item) {
     let index = Array.from(item.parentNode.children).indexOf(item);
     item.remove();
-    // if (index !== -1) {
-    //     library.splice(index, 1);
-    // }
+
 }
 
 function removeLibraryItem(item) {
     let index = Array.from(item.parentNode.children).indexOf(item);
-    // item.remove();
     if (index !== -1) {
         library.splice(index, 1);
     }
@@ -129,6 +129,14 @@ function sortByProperty(array, property, order) {
 }
 
 function formValidity() {
+        if (form.checkValidity()) {
+            return true
+        }
+        else {
+            //Validate Form
+            form.reportValidity()
+            return false
+        }
 
 }
 
@@ -139,8 +147,13 @@ function init() {
 
 formSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    createItem(createBook())
-    form.reset()
+    if (formValidity()) {
+        createItem(createBook())
+        form.reset()
+    } else {
+        return null
+    }
+
 })
 
 deleteAllBtn.addEventListener('click', (e) => {
@@ -164,6 +177,3 @@ init()
 
 //to add:
 //validation
-//read status toggle
-//sort feature
-//del individual button
