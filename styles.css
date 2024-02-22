@@ -50,8 +50,8 @@ img, picture, svg, video {
     border: 1px solid black;
 }
 
-
-
-
+.has-read {
+    border: 2px solid green;
+}
 
 /* yellow black colour scheme/gold */

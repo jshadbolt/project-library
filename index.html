@@ -29,6 +29,23 @@
         </div>
         <button type="submit" id="form-submit">Create Book</button>
     </form>
+    <div class="sort-container">
+        <fieldset>
+            <label for="sort-category">Sort by:</label>
+            <select name="sort-category" id="sort-category">
+                <option value="title">title</option>
+                <option value="author">author</option>
+                <option value="pages">pages</option>
+                <option value="genre">genre</option>
+                <option value="status">status</option>
+            </select>
+            <select name="sort-order" id="sort-order">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+            <button type="submit" id="sort-search">Search</button>
+        </fieldset>
+    </div>
     <div class="list-container">
         <div class="list-header">
             <div class="header-subsection">

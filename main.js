@@ -1,13 +1,17 @@
 const form = document.getElementById('form')
 const formSubmitBtn = document.getElementById('form-submit')
 const list = document.querySelector('.list')
-const listDeleteAll = document.getElementById('delete-all')
+const deleteAllBtn = document.getElementById('delete-all')
 const titleSort = document.getElementById('title-sort')
 const authorSort = document.getElementById('author-sort')
 const pagesSort = document.getElementById('pages-sort')
 const genreSort = document.getElementById('genre-sort')
 const statusSort = document.getElementById('status-sort')
 let sortBtns = document.querySelectorAll('.sort-button')
+
+const sortCategory = document.getElementById('sort-category')
+const sortOrder = document.getElementById('sort-order')
+const sortSearch = document.getElementById('sort-search')
 
 let library = [
     new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
@@ -51,39 +55,60 @@ function createItem(obj) {
     let statusBtn = document.createElement('button')
     statusBtn.textContent = obj.status
     statusBtn.classList.add('status-button')
+    statusBtn.addEventListener('click', (e) => {
+        if (obj.status === 'Unread') {
+            obj.status = 'Read'
+            statusBtn.classList.add('has-read')
+        } else {
+            obj.status = 'Unread'
+            statusBtn.classList.remove('has-read')
+
+        }
+        statusBtn.textContent = obj.status
+        console.log(obj.status)
+    })
     listItem.appendChild(statusBtn)
 
     let itemDelBtn = document.createElement('button')
     itemDelBtn.textContent = 'Delete'
     itemDelBtn.classList.add('list-item-delete')
-    itemDelBtn.addEventListener('click', () => removeItem(listItem))
+    itemDelBtn.addEventListener('click', () => {
+        removeLibraryItem(listItem)
+        removeListItem(listItem)
+    })
     listItem.appendChild(itemDelBtn)
 
     list.appendChild(listItem)
 }
 
-function removeItem(item) {
+function removeListItem(item) {
     let index = Array.from(item.parentNode.children).indexOf(item);
     item.remove();
+    // if (index !== -1) {
+    //     library.splice(index, 1);
+    // }
+}
+
+function removeLibraryItem(item) {
+    let index = Array.from(item.parentNode.children).indexOf(item);
+    // item.remove();
     if (index !== -1) {
         library.splice(index, 1);
     }
 }
 
-formSubmitBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    createItem(createBook())
-    form.reset()
-})
 
-listDeleteAll.addEventListener('click', (e) => {
+
+function listDeleteAll() {
     let listItems = list.querySelectorAll('.list-item')
     for (let item of listItems) {
-        removeItem(item)
+        removeListItem(item)
     }
-})
+}
 
-
+function libraryDeleteAll() {
+    library = []
+}
 
 function createItemsFromLibrary() {
     for (let book of library) {
@@ -107,15 +132,33 @@ function formValidity() {
 
 }
 
+function init() {
+    sortByProperty(library, 'title', 'asc')
+    createItemsFromLibrary()
+}
+
+formSubmitBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    createItem(createBook())
+    form.reset()
+})
+
+deleteAllBtn.addEventListener('click', (e) => {
+    listDeleteAll()
+    libraryDeleteAll()
+})
 
 
+sortSearch.addEventListener('click', () => {
+    let category = sortCategory.value
+    let order = sortOrder.value
+    listDeleteAll()
+    sortByProperty(library, category, order)
+    createItemsFromLibrary()
+})
 
 
-sortByProperty(library, 'pages', 'desc')
-
-
-createItemsFromLibrary()
-
+init()
 
 
 
