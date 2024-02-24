@@ -133,6 +133,11 @@ function sortByProperty(array, property, order) {
     });
 }
 
+function liveValidity() {
+    // let fields = Array.from(form.querySelectorAll('input'))
+
+}
+
 function formValidity(form) {
     let fields = Array.from(form.querySelectorAll('input'))
     for (let field of fields) { //if any field is empty, return false
@@ -160,7 +165,6 @@ formSubmitBtn.addEventListener('click', (e) => {
 })
 
 
-
 deleteAllBtn.addEventListener('click', (e) => {
     listDeleteAll()
     libraryDeleteAll()
@@ -177,8 +181,3 @@ sortSearch.addEventListener('click', () => {
 
 
 init()
-
-
-
-//to add:
-//validation
