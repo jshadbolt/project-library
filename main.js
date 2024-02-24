@@ -9,6 +9,7 @@ const genreSort = document.getElementById('genre-sort')
 const statusSort = document.getElementById('status-sort')
 let sortBtns = document.querySelectorAll('.sort-button')
 
+
 const sortCategory = document.getElementById('sort-category')
 const sortOrder = document.getElementById('sort-order')
 const sortSearch = document.getElementById('sort-search')
@@ -19,19 +20,25 @@ let library = [
     new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
 ]
 
-function Book(title, author, pages, genre) {
+function Book(title, author, pages, genre, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.genre = genre;
-    this.status = 'Unread';
+    this.status = status === true ? 'Read' : 'Unread';
 }
 
 function createBook() {
-    let formData = []
     let fields = Array.from(form.querySelectorAll('input'))
+
+    let formData = []
     fields.forEach((field) => {
-        formData.push(field.value)
+        if (field.type === 'checkbox') {
+            formData.push(field.checked)
+            return
+        } else {
+            formData.push(field.value)
+        }
     })
     let book = new Book(...formData)
     library.push(book)
@@ -46,7 +53,6 @@ function createItem(obj) {
 
     for (let key in obj) {
         if (key === 'status') continue;
-
         let category = document.createElement('div')
         category.textContent = obj[key]
         listItem.appendChild(category)
@@ -62,7 +68,6 @@ function createItem(obj) {
         } else {
             obj.status = 'Unread'
             statusBtn.classList.remove('has-read')
-
         }
         statusBtn.textContent = obj.status
         console.log(obj.status)
@@ -128,15 +133,14 @@ function sortByProperty(array, property, order) {
     });
 }
 
-function formValidity() {
-        if (form.checkValidity()) {
-            return true
-        }
-        else {
-            //Validate Form
-            form.reportValidity()
+function formValidity(form) {
+    let fields = Array.from(form.querySelectorAll('input'))
+    for (let field of fields) { //if any field is empty, return false
+        if (field.value.length == 0) {
             return false
         }
+    }
+    return true
 
 }
 
@@ -147,14 +151,15 @@ function init() {
 
 formSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (formValidity()) {
+    if (formValidity(form)) {
         createItem(createBook())
         form.reset()
     } else {
-        return null
+        alert('please fill fields')
     }
-
 })
+
+
 
 deleteAllBtn.addEventListener('click', (e) => {
     listDeleteAll()
