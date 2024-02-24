@@ -1,3 +1,17 @@
+:root {
+    --font-detail: "DM Sans", sans-serif;
+    --font-size-small: 0.5rem;
+    --font-size-regular: 1rem;
+    --font-size-large: 1.5rem;
+    --font-size-display: 3rem;
+
+    --padding-small: 10px;
+    --padding-regular: 20px;
+    --padding-display: 100px;
+
+    --radius-regular: 3px;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -13,45 +27,204 @@ img, picture, svg, video {
     max-width: 100%;
 }
 
+button {
+    border: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-detail);
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-weight: 200;
+}
+
+.page-container {
+    padding-left: var(--padding-display);
+    padding-right: var(--padding-display);
+    /* padding-top: var(--padding-regular); */
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+}
+
+.show-dialog-container {
+    font-size: var(--font-size-display);
+    padding: var(--padding-display);
+    display: flex;
+    align-items: center;
+    gap: var(--padding-regular);
+}
+
+#show-dialog {
+    width: 50px;
+    height: 50px;
+    /* background-color: blue; */
+    border: 2px solid rgb(106, 106, 106);
+    /* background-color: rgb(213, 213, 213); */
+    background-size: contain;
+    border-radius: var(--radius-regular);
+    background-image: url(./icon/plus-svg.svg);
+    transition: all 0.1s ease-out;
+}
+
+.sort-container {
+    font-size: var(--font-size-large);
+    padding: 0 var(--padding-display);
+    margin-bottom: var(--padding-regular);
+}
+
+.sort-container > label {
+    display: block;
+    padding-bottom: var(--padding-regular);
+}
+
+.sort-container > fieldset {
+    border: none;
+    display: flex;
+    gap: var(--padding-regular);
+}
+
+.sort-container select,
+.sort-container button {
+    border: none;
+}
+
+#sort-search {
+    padding: 5px;
+    border-radius: var(--radius-regular);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(159, 159, 159);
+    transition: filter 0.1s ease-out;
+}
+
+#sort-search > img {
+    filter: invert(100%);
+}
+
+.list-header-container {
+    /* padding-right: var(--padding-regular); */
+}
+
 .list-container {
-    padding: 10px 10px;
+    padding: 0 var(--padding-display);
 }
 
 .list-header {
-    background: grey;
-    height: 30px;
+    margin-bottom: var(--padding-small);
+    padding-right: 15px;
 }
 
-.header-subsection {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    padding-right: 10px;
+.list-header-status {
+    text-align: center;
 }
 
-.sort {
-    padding: 2px 5px;
+.header-section {
+    padding: var(--padding-small) 0;
+    font-weight: 500;
 }
 
 .list-header,
 .list-item {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr 1fr 150px 150px 0.5fr 60px;
     align-items: center;
+
 }
 
 .list {
-    display: grid;
-    gap: 10px;
-    padding-bottom: 10px;
+    overflow-y: scroll;
 }
 
 .list-item {
-    border: 1px solid black;
+    margin-bottom: var(--padding-small);
+}
+
+
+
+#form-dialog {
+
+}
+
+::backdrop {
+    background-color: rgba(0, 0, 0, 0.098);
+}
+
+.status-button {
+    width: 50%;
+    padding: 2px 0;
+    background-color: palegoldenrod;
+    justify-self: center;
 }
 
 .has-read {
-    border: 2px solid green;
+    background-color: rgb(32, 159, 66);
 }
 
-/* yellow black colour scheme/gold */
+/* .list-item-delete {
+    width: 20px;
+    height: 20px;
+    background-image: url(./icon/minus-circle-outline.svg);
+    border-radius: 50%;
+} */
+
+.footer {
+    padding: var(--padding-regular) 0;
+}
+
+#delete-all {
+    font-size: var(--font-size-regular);
+    padding: var(--padding-small);
+    border-bottom: 2px solid rgb(122, 122, 122);
+    background: none;
+    display: block;
+    margin-left: auto;
+    transition: 0.01s;
+}
+
+/* pseudos: */
+
+#show-dialog:hover {
+    background-color: rgb(150, 150, 150);
+    filter: brightness(50%);
+    transform: scale(0.98);
+}
+
+.sort-container select:focus {
+    outline: none;
+}
+
+.status-button:not(.no-hover):hover {
+    filter: saturate(1%);
+}
+
+.list-item-delete:hover {
+    background-color: rgb(198, 109, 124);
+}
+
+#delete-all:hover {
+    background-color: rgb(150, 150, 150);
+
+}
+
+#delete-all:active {
+    transform: scale(0.95);
+    filter: brightness(1.2);
+}
+
+#sort-search:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+#sort-search:active {
+    filter: brightness(1.2);
+}
+
+/* change green colour */
+/* //filter icon material design */
+/* icon for + library */
+/* icno for delete button */
+/* remove focus on sort selects */

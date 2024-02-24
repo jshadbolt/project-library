@@ -7,6 +7,11 @@ const authorSort = document.getElementById('author-sort')
 const pagesSort = document.getElementById('pages-sort')
 const genreSort = document.getElementById('genre-sort')
 const statusSort = document.getElementById('status-sort')
+
+const showFormBtn = document.getElementById('show-dialog')
+const dialog = document.querySelector('dialog')
+const closeBtn = document.getElementById('close-button')
+
 let sortBtns = document.querySelectorAll('.sort-button')
 
 
@@ -15,6 +20,21 @@ const sortOrder = document.getElementById('sort-order')
 const sortSearch = document.getElementById('sort-search')
 
 let library = [
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
     new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
     new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
     new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
@@ -65,9 +85,12 @@ function createItem(obj) {
         if (obj.status === 'Unread') {
             obj.status = 'Read'
             statusBtn.classList.add('has-read')
+            statusBtn.classList.add('no-hover')
         } else {
             obj.status = 'Unread'
             statusBtn.classList.remove('has-read')
+            statusBtn.classList.remove('no-hover')
+
         }
         statusBtn.textContent = obj.status
         console.log(obj.status)
@@ -78,7 +101,7 @@ function createItem(obj) {
     listItem.appendChild(statusBtn)
 
     let itemDelBtn = document.createElement('button')
-    itemDelBtn.textContent = 'Delete'
+    // itemDelBtn.textContent = 'Delete'
     itemDelBtn.classList.add('list-item-delete')
     itemDelBtn.addEventListener('click', () => {
         removeLibraryItem(listItem)
@@ -179,5 +202,15 @@ sortSearch.addEventListener('click', () => {
     createItemsFromLibrary()
 })
 
+showFormBtn.addEventListener('click', () => {
+    dialog.showModal()
+})
+
+closeBtn.addEventListener('click', () => {
+    dialog.close()
+})
+
 
 init()
+
+//scroll to top of view when filtering

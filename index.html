@@ -9,76 +9,80 @@
 </head>
 <body>
 
-    <form action="" method="get" id="form">
-        <h1>Enter Book Details:</h1>
-        <div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" minlength="1" maxlength="100" required>
+    <div class="page-container">
+        <dialog id="form-dialog">
+            <form action="" method="get" id="form">
+                <button id="close-button">x</button>
+                <h1>Enter Book Details:</h1>
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" minlength="1" maxlength="100" required>
+                </div>
+                <div>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author"  minlength="1" maxlength="100" required>
+                </div>
+                <div>
+                    <label for="pages">Pages:</label>
+                    <input type="number" id="pages" name="pages" min="1" required>
+                    <!-- type = tel? -->
+                </div>
+                <div>
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre"  minlength="1" maxlength="100" required>
+                </div>
+                <div>
+                    <label for="status">Read?:</label>
+                    <input type="checkbox" id="status" name="status">
+                </div>
+                <button type="submit" id="form-submit">Create Book</button>
+            </form>
+        </dialog>
+        <div class="show-dialog-container">
+            <label for="show-dialog">Add to library</label>
+            <button id="show-dialog"></button>
         </div>
-        <div>
-            <label for="author">Author:</label>
-            <input type="text" id="author" name="author"  minlength="1" maxlength="100" required>
-        </div>
-        <div>
-            <label for="pages">Pages:</label>
-            <input type="number" id="pages" name="pages" min="1" required>
-            <!-- type = tel? -->
-        </div>
-        <div>
-            <label for="genre">Genre:</label>
-            <input type="text" id="genre" name="genre"  minlength="1" maxlength="100" required>
-        </div>
-        <div>
-            <label for="status">Read?:</label>
-            <input type="checkbox" id="status" name="status">
-        </div>
-        <button type="submit" id="form-submit">Create Book</button>
-    </form>
-    <div class="sort-container">
-        <fieldset>
+        <div class="sort-container">
             <label for="sort-category">Sort by:</label>
-            <select name="sort-category" id="sort-category">
-                <option value="title">title</option>
-                <option value="author">author</option>
-                <option value="pages">pages</option>
-                <option value="genre">genre</option>
-                <option value="status">status</option>
-            </select>
-            <select name="sort-order" id="sort-order">
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
-            </select>
-            <button type="submit" id="sort-search">Search</button>
-        </fieldset>
-    </div>
-    <div class="list-container">
-        <div class="list-header">
-            <div class="header-subsection">
-                <div class="list-header-title">Title</div>
-
-            </div>
-            <div class="header-subsection">
-                <div class="list-header-author">Author</div>
-
-            </div>
-            <div class="header-subsection">
-                <div class="list-header-pages">Pages</div>
-
-            </div>
-            <div class="header-subsection">
-                <div class="list-header-genre">Genre</div>
-
-            </div>
-            <div class="header-subsection">
-                <div class="list-header-status">Status</div>
-
+            <fieldset>
+                <select name="sort-category" id="sort-category">
+                    <option value="title">title</option>
+                    <option value="author">author</option>
+                    <option value="pages">pages</option>
+                    <option value="genre">genre</option>
+                    <option value="status">status</option>
+                </select>
+                <select name="sort-order" id="sort-order">
+                    <option value="asc">ascending</option>
+                    <option value="desc">descending</option>
+                </select>
+                <button type="submit" id="sort-search"><img src="./icon/filter-variant.svg" alt=""></button>
+            </fieldset>
+        </div>
+        <div class="list-header-container">
+            <div class="list-header">
+                <div class="header-section">
+                    <div class="list-header-title">Title</div>
+                </div>
+                <div class="header-section">
+                    <div class="list-header-author">Author</div>
+                </div>
+                <div class="header-section">
+                    <div class="list-header-pages">Pages</div>
+                </div>
+                <div class="header-section">
+                    <div class="list-header-genre">Genre</div>
+                </div>
+                <div class="header-section">
+                    <div class="list-header-status">Status</div>
+                </div>
             </div>
         </div>
         <ul class="list">
         </ul>
-        <button id="delete-all">Delete All</button>
+        <div class="footer">
+            <button id="delete-all">Remove All</button>
+        </div>
     </div>
-
-
 </body>
 </html>
