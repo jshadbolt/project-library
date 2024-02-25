@@ -31,6 +31,11 @@ button {
     border: none;
 }
 
+*:focus {
+    outline: none;
+}
+
+
 html {
     height: 100%;
 }
@@ -70,6 +75,121 @@ body {
     transition: all 0.1s ease-out;
 }
 
+/* form below */
+
+#form-dialog {
+    width: 30%;
+    
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 5%;
+    text-align: center;
+    
+    background-color: rgb(195, 195, 195);
+    border-radius: var(--radius-regular);
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#form {
+    background-color: white;
+    padding: var(--padding-small);
+}
+
+#form > #close-button {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+
+#form > .fields-container {
+    padding: 0 var(--padding-regular);
+    margin-bottom: var(--padding-display);
+}
+
+
+.fields-container > h1 {
+    font-size: var(--font-size-large);
+    padding: var(--padding-display) 0;
+}
+
+.fields-container > div {
+    margin-bottom: var(--padding-small);
+    display: flex;
+}
+
+
+#form label {
+    border-right: 1px solid rgba(183, 183, 183, 0.731);
+    border-bottom: 1px solid rgba(183, 183, 183, 0.731);
+    
+    padding: 5px 5px;
+    font-weight: 350;
+    font-size: 0.8rem;
+    /* width: fit-content; */
+    width: 20%;
+}
+
+#form input {
+    padding: 5px var(--padding-small);
+    /* text-align: center; */
+    border: none;
+    border-bottom: 1px solid rgba(183, 183, 183, 0.731);
+    flex: 1;
+}
+
+#form input[type='text'],
+#form input[type='number'] {
+    /* width: 100%; */
+}
+
+#checkbox-container {
+    display: flex;
+    width: 100%;
+}
+
+.container-container {
+
+    margin: auto;
+}
+
+
+.container-container > label {
+    vertical-align: middle;
+    border: none !important; 
+}
+
+.container-container > input {
+    vertical-align: middle;
+}
+
+
+input[type='checkbox'] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid silver !important;
+}
+
+input[type='checkbox']:checked {
+    background-image: url(./icon/check.svg);
+    background-position: center center;
+}
+
+#form-submit {
+    padding: 5px var(--padding-small);
+    margin: var(--padding-regular);
+
+    display: block;
+    margin-left: auto;
+    background-color: rgba(183, 183, 183, 0.731);
+}
+
 .sort-container {
     font-size: var(--font-size-large);
     padding: 0 var(--padding-display);
@@ -77,7 +197,7 @@ body {
 }
 
 .sort-container > label {
-    display: block;
+    display: flex;
     padding-bottom: var(--padding-regular);
 }
 
@@ -143,12 +263,6 @@ body {
     margin-bottom: var(--padding-small);
 }
 
-
-
-#form-dialog {
-
-}
-
 ::backdrop {
     background-color: rgba(0, 0, 0, 0.098);
 }
@@ -164,33 +278,60 @@ body {
     background-color: rgb(32, 159, 66);
 }
 
-/* .list-item-delete {
+.list-item-delete {
     width: 20px;
     height: 20px;
-    background-image: url(./icon/minus-circle-outline.svg);
-    border-radius: 50%;
-} */
+    background-image: url(./icon/close-box-outline.svg);
+    border-radius: var(--radius-regular);
+    opacity: 0.7;
+}
 
 .footer {
-    padding: var(--padding-regular) 0;
+    padding: var(--padding-regular) 2px;
 }
 
 #delete-all {
     font-size: var(--font-size-regular);
     padding: var(--padding-small);
-    border-bottom: 2px solid rgb(122, 122, 122);
+    /* border-bottom: 2px solid rgb(122, 122, 122); */
     background: none;
+    background-color: rgba(183, 183, 183, 0.731);
     display: block;
     margin-left: auto;
     transition: 0.01s;
+    border: 1px solid transparent;
+
 }
 
+
+
 /* pseudos: */
+
+/* extra visual response for clicking vs hovering buttons: */
+button:active { 
+    filter: brightness(1.2);
+    border: 1px solid rgb(255, 196, 0);
+    box-sizing: border-box;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid rgb(255, 196, 0);
+
+}
 
 #show-dialog:hover {
     background-color: rgb(150, 150, 150);
     filter: brightness(50%);
     transform: scale(0.98);
+}
+
+#show-dialog:active {
+    filter: brightness(0.4);
 }
 
 .sort-container select:focus {
@@ -202,29 +343,19 @@ body {
 }
 
 .list-item-delete:hover {
-    background-color: rgb(198, 109, 124);
+    background-color: rgba(198, 109, 118, 0.798);
 }
 
 #delete-all:hover {
     background-color: rgb(150, 150, 150);
-
 }
 
 #delete-all:active {
-    transform: scale(0.95);
     filter: brightness(1.2);
+    background: rgb(160, 80, 85);
 }
 
 #sort-search:hover {
     background-color: rgb(150, 150, 150);
 }
 
-#sort-search:active {
-    filter: brightness(1.2);
-}
-
-/* change green colour */
-/* //filter icon material design */
-/* icon for + library */
-/* icno for delete button */
-/* remove focus on sort selects */

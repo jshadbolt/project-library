@@ -20,25 +20,13 @@ const sortOrder = document.getElementById('sort-order')
 const sortSearch = document.getElementById('sort-search')
 
 let library = [
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
-    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Thriller'),
-    new Book('The Trial', 'Franz Kafka', '162', 'Crime'),
-    new Book('Alice in Wonderland', 'Someone', '215', 'mystery'),
+    new Book('One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '422', 'Fantasy'),
+    new Book('The Trial', 'Franz Kafka', '162', 'Dystopian'),
+    new Book('Alice in Wonderland', 'Someone', '215', 'Fantasy'),
+    new Book('The Great Gatsby', 'F. Scott Fitzgerald', '208', 'Modernism'),
 ]
+
+let libraryDupe = library
 
 function Book(title, author, pages, genre, status) {
     this.title = title;
@@ -101,7 +89,7 @@ function createItem(obj) {
     listItem.appendChild(statusBtn)
 
     let itemDelBtn = document.createElement('button')
-    // itemDelBtn.textContent = 'Delete'
+    // itemDelBtn.textContent = 'x'
     itemDelBtn.classList.add('list-item-delete')
     itemDelBtn.addEventListener('click', () => {
         removeLibraryItem(listItem)
@@ -109,7 +97,7 @@ function createItem(obj) {
     })
     listItem.appendChild(itemDelBtn)
 
-    list.appendChild(listItem)
+    list.insertBefore(listItem, list.firstChild)
 }
 
 function removeListItem(item) {
@@ -180,12 +168,18 @@ function init() {
 formSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault()
     if (formValidity(form)) {
-        createItem(createBook())
+        listDeleteAll()
+        createBook()
+        createItemsFromLibrary()
+        // createItem(createBook()) // for creating only one item at a time
         form.reset()
+        dialog.close()
     } else {
-        alert('please fill fields')
+        alert('Please fill all fields')
     }
 })
+
+form.addEventListener('submit', () => form.preventDefault())
 
 
 deleteAllBtn.addEventListener('click', (e) => {
@@ -207,10 +201,23 @@ showFormBtn.addEventListener('click', () => {
 })
 
 closeBtn.addEventListener('click', () => {
-    dialog.close()
+    // dialog.close()
+    console.log('closed')
 })
+
+window.addEventListener('keydown',function(e) {
+    if (e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
+        if (e.target.nodeName=='INPUT' && e.target.type=='text') {
+            e.preventDefault();
+
+            return false;
+        }
+    }
+}, true);
 
 
 init()
 
 //scroll to top of view when filtering
+
+//bugs: creating new book doesnt place in sorted list, sorting numerically
